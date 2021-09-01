@@ -1,0 +1,39 @@
+#receber cpf
+cpf=[]
+userCpff= input("Digite seu cpf: ")
+# remover simbolos
+for simbol in '.-':  
+  userCpff = userCpff.replace(simbol,'')
+# Primeira Validação 
+cpfInvalid = ['00000000000', '11111111111', '22222222222', '33333333333','44444444444', '55555555555', '66666666666', '77777777777', '88888888888','99999999999']
+res= cpfInvalid.count(userCpff)
+tam = len(userCpff)
+if res>0 or tam<11 or tam>11:
+  print("CPF inválido.")
+else: 
+   #converter em int
+   for i in userCpff:
+     cpf.append(int(i))
+   #validação do 1 num
+   soma=0
+   for m in range(0, 9):
+     multi = cpf[m] * (10 - m)
+     soma += multi
+   numFinal= cpf[9:11]
+   res= soma*10%11
+   if res==10:
+    res=0
+   if res != numFinal[0]:
+    print("CPF inválido")
+   else: 
+    pass
+   #Validação do 2 num
+   soma2=0
+   for p in range(0, 10):
+    multi2 = cpf[p] * (11 - p)
+    soma2 += multi2
+   res2= soma2*10%11
+   if res2== numFinal[1]: 
+    print("CPF válido.")
+   else:
+    print("Cpf inválido.")
